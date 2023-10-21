@@ -36,8 +36,6 @@ in
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
-    git
-    gh
     nodejs
     jdk
     mpv
@@ -58,7 +56,6 @@ in
     rofi-wayland
     neofetch
     brightnessctl
-    lf 
     zathura
     htop
     firefox
@@ -86,16 +83,23 @@ in
     EDITOR = "nvim";
   };
 
-  
+  programs = {
+    git = {
+      enable = true;
+      userEmail = "janedoe@email.com";
+      userName = "enchanted-coder";
+    };
+    gh.enable = true;
+    lf.enable = true;
+  }; 
 
-  # enable qt
-  qt.enable = true;
+  # Enable qt
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
+    style.name = "adwaita-dark";
+    style.package = pkgs.adwaita-qt;
 
-  qt.platformTheme = "gtk";
-
-  qt.style.name = "adwaita-dark";
-
-  qt.style.package = pkgs.adwaita-qt; 
 
   programs.home-manager.enable = true;
 }
