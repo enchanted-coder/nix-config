@@ -99,7 +99,7 @@ in
     platformTheme = "gtk";
     style.name = "adwaita-dark";
     style.package = pkgs.adwaita-qt;
-
+  };
 
   programs.home-manager.enable = true;
 }
