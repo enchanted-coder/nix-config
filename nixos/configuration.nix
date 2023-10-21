@@ -38,7 +38,7 @@
   };
 
   networking = {
-    hostname = "nixos";
+    hostName = "nixos";
     networkmanager.enable = true;
   };
 
@@ -129,6 +129,8 @@
     extraGroups = [ "wheel" "libvirtd" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       # packages go here
+      git 
+      gh
     ];
   };
   

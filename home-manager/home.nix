@@ -36,8 +36,6 @@ in
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
-    git 
-    gh
     nodejs
     jdk
     mpv
