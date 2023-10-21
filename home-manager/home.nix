@@ -36,6 +36,8 @@ in
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
+    git 
+    gh
     nodejs
     jdk
     mpv
@@ -84,12 +86,6 @@ in
   };
 
   programs = {
-    git = {
-      enable = true;
-      userEmail = "janedoe@email.com";
-      userName = "enchanted-coder";
-    };
-    gh.enable = true;
     lf.enable = true;
   }; 
 
