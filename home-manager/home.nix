@@ -6,8 +6,8 @@ in
 
 {
   
-  home.username = "enchanted-coder";
-  home.homeDirectory = "/home/enchanted-coder";
+  home.username = "nx0enjoyer";
+  home.homeDirectory = "/home/nx0enjoyer";
 
   
   home.stateVersion = "23.05"; 
@@ -32,10 +32,47 @@ in
     name = "Bibata-Modern-Ice";
     size = 22;
   };
+  
+  # configure git
+  programs = {
+    git = {
+      enable = true;
+      userName = "enchanted-coder";
+      userEmail = "danieltogey@pm.me";
+    };
+  };
+ 
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
+  
+  # enable lf file manager
+  programs = {
+    lf.enable = true;
+  }; 
+
+  # Enable qt
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
+    style.name = "adwaita-dark";
+    style.package = pkgs.adwaita-qt;
+  };
+
 
   nixpkgs.config.allowUnfree = true;
 
+
   home.packages = with pkgs; [
+    grim
+    slurp
+    aircrack-ng
+    gping
+    gh
+    nmap
+    heroic-unwrapped
+    go
+    python312
     nodejs
     jdk
     mpv
@@ -46,10 +83,13 @@ in
     gnome.file-roller
     imv
     R
+    networkmanagerapplet
+    iwgtk
     (waybar.overrideAttrs (oldAttrs: {
       mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
      })
     )
+    alacritty
     mako 
     libnotify
     hyprpaper
@@ -70,6 +110,8 @@ in
     jetbrains.pycharm-professional
     lxmenu-data
     shared-mime-info
+    cmatrix
+    jetbrains.goland
   ];
 
   
@@ -78,22 +120,6 @@ in
 
   };
 
- 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
-
-  programs = {
-    lf.enable = true;
-  }; 
-
-  # Enable qt
-  qt = {
-    enable = true;
-    platformTheme = "gtk";
-    style.name = "adwaita-dark";
-    style.package = pkgs.adwaita-qt;
-  };
 
   programs.home-manager.enable = true;
 }

@@ -38,7 +38,7 @@
   };
 
   networking = {
-    hostName = "nixos";
+    hostName = "mutant";
     networkmanager.enable = true;
   };
 
@@ -65,6 +65,7 @@
      sddm.theme = "${import ./sddm-theme.nix { inherit pkgs; }}";
    };
  };
+  
 
   # Enable hyprland
   programs.hyprland = {
@@ -97,6 +98,7 @@
   };
 
   # Enable sound with pipewire
+  hardware.pulseaudio.enable = false;
   sound.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -129,8 +131,6 @@
     extraGroups = [ "wheel" "libvirtd" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       # packages go here
-      git 
-      gh
     ];
   };
   
@@ -157,7 +157,6 @@
     gcc
     gnumake
     pamixer
-    alacritty
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
     home-manager
@@ -180,7 +179,7 @@
   services.tlp.enable = true;
   
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
