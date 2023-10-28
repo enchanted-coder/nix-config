@@ -167,7 +167,6 @@
     pamixer
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
-    home-manager
   ];  
   
   xdg.portal.enable = true;
