@@ -12,8 +12,7 @@
 
   
   home.stateVersion = "23.05"; 
-
-   
+  
   # enable gtk
   gtk = {
     enable = true;
@@ -128,7 +127,7 @@
     
 
   };
-
-
+  
+  
   programs.home-manager.enable = true;
 }
