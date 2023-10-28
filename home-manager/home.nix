@@ -1,11 +1,12 @@
 { config, pkgs, ... }:
 
-let
-  # gruvboxPlus = import ./gruvbox-plus.nix { inherit pkgs; };
-in
 
 {
   
+  imports = [
+    ./programs
+  ];
+
   home.username = "nx0enjoyer";
   home.homeDirectory = "/home/nx0enjoyer";
 
@@ -32,8 +33,7 @@ in
     name = "Bibata-Modern-Ice";
     size = 22;
   };
-  
-  # configure git
+
   programs = {
     git = {
       enable = true;
@@ -41,12 +41,21 @@ in
       userEmail = "danieltogey@pm.me";
     };
   };
+
+  services.mako = {
+    enable = true;
+    backgroundColor = "#1d2021";
+    borderColor = "#427b58";
+    borderRadius = 5;
+    borderSize = 2;
+    textColor = "#a89984";
+    layer = "overlay";
+  };
  
   home.sessionVariables = {
     EDITOR = "nvim";
   };
-  
-  # enable lf file manager
+
   programs = {
     lf.enable = true;
   }; 
@@ -89,7 +98,7 @@ in
       mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
      })
     )
-    alacritty
+    # alacritty
     mako 
     libnotify
     hyprpaper
