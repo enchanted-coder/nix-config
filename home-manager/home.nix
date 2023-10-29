@@ -5,6 +5,7 @@
   
   imports = [
     ./programs
+    ./themes 
   ];
 
   home.username = "nx0enjoyer";
@@ -13,19 +14,6 @@
   
   home.stateVersion = "23.05"; 
   
-  # enable gtk
-  gtk = {
-    enable = true;
-    theme = {
-      package = pkgs.materia-theme;
-      name = "Materia-dark-compact";
-    };
-    iconTheme = {
-      package = pkgs.paper-icon-theme;
-      name = "Paper";
-    };
-  };
-
   # configure cursor  
   home.pointerCursor = {
     package = pkgs.bibata-cursors;
@@ -58,15 +46,6 @@
   programs = {
     lf.enable = true;
   }; 
-
-  # Enable qt
-  qt = {
-    enable = true;
-    platformTheme = "gtk";
-    style.name = "adwaita-dark";
-    style.package = pkgs.adwaita-qt;
-  };
-
 
   nixpkgs.config.allowUnfree = true;
 
