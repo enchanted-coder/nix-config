@@ -5,7 +5,8 @@
   
   imports = [
     ./programs
-    ./themes 
+    ./themes
+    ./development
   ];
 
   home.username = "nx0enjoyer";
@@ -48,9 +49,12 @@
   }; 
 
   nixpkgs.config.allowUnfree = true;
-
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-24.8.6"
+  ];
 
   home.packages = with pkgs; [
+    discord
     grim
     slurp
     aircrack-ng
@@ -76,7 +80,6 @@
       mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
      })
     )
-    # alacritty
     mako 
     libnotify
     hyprpaper
@@ -86,19 +89,15 @@
     zathura
     htop
     firefox
-    neovim
-    vscode
     spotify
     obsidian
     qbittorrent
     libreoffice-still
     obs-studio
     eww-wayland
-    jetbrains.pycharm-professional
     lxmenu-data
     shared-mime-info
     cmatrix
-    jetbrains.goland
   ];
 
   
