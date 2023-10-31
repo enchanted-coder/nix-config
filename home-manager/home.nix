@@ -7,6 +7,7 @@
     ./programs
     ./themes
     ./development
+    ./gaming
   ];
 
   home.username = "nx0enjoyer";
@@ -22,13 +23,6 @@
     size = 22;
   };
 
-  programs = {
-    git = {
-      enable = true;
-      userName = "enchanted-coder";
-      userEmail = "danieltogey@pm.me";
-    };
-  };
 
   services.mako = {
     enable = true;
@@ -61,21 +55,15 @@
     gping
     gh
     nmap
-    heroic-unwrapped
-    go
-    python312
-    nodejs
-    jdk
     mpv
-    bat 
     virt-manager
     unzip
     p7zip
     gnome.file-roller
     imv
-    R
     networkmanagerapplet
     iwgtk
+    wirelesstools
     (waybar.overrideAttrs (oldAttrs: {
       mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
      })
