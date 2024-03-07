@@ -1,7 +1,7 @@
 {
   imports = [
-    ./alactritty
-    ./zsh
+    # ./alactritty
+    # ./zsh
     ./misc
   ];
 }

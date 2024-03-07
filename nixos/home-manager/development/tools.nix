@@ -3,11 +3,9 @@
 {
   home.packages = with pkgs; [
     nodejs
-    gh
-    python312
+    python3
     jdk
     go
-    R
     bun
   ];
 }

@@ -1,9 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      inputs.home-manager.nixosModules.default
     ];
   
   # Enable experimental features
@@ -37,8 +38,9 @@
     };
   };
 
+  # Enable networking
   networking = {
-    hostName = "mutant";
+    hostName = "shadow";
     networkmanager.enable = true;
   };
 
@@ -53,31 +55,21 @@
   #   useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  # Enable the X11 windowing system.
- services.xserver = {
-   enable = true;
-   displayManager = {
-     sddm.enable = true;
-     sddm.theme = "${import ./sddm-theme.nix { inherit pkgs; }}";
-   };
- };
-  
-  # Enable steam
-  programs.steam = {
-   enable = true;
-   remotePlay.openFirewall = true;
-   dedicatedServer.openFirewall = true;
+  # Enable hyprland window manager
+  programs = {
+    hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+      xwayland.enable = true;
+    };
   };
 
-  # Enable hyprland
-  programs.hyprland = {
+  programs.steam = {
     enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
   };
-  programs.hyprland.xwayland = {
-    hidpi = true;
-    enable = true;
-  };
-  
+
   environment.sessionVariables = {
     # If cursor becomes invisible
     # WLR_NO_HARDWARE_CURSORS = "1";
@@ -86,11 +78,11 @@
   };
   
   hardware = {
-    # opengl.enable = true;
-    bluetooth.enable = true;
+    opengl.enable = true;
+    # bluetooth.enable = true;
   }; 
 
-  services.blueman.enable = true;
+  # services.blueman.enable = true;
   services.gnome.gnome-keyring.enable = true;
 
 
@@ -131,12 +123,12 @@
   services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.nx0enjoyer = {
+  users.users.dd0n3 = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "libvirtd" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "libvirtd" ]; # Enable ‘sudo’ for the user.
+    # shell = pkgs.nushell;
     packages = with pkgs; [
       # packages go here
-      (opera.override { proprietaryCodecs = true; })
     ];
   };
  
@@ -148,7 +140,12 @@
         monospace = [ "Meslo LG M Regular Nerd Font Complete Mono" ];
       };
     };
-    fonts = with pkgs; [ (nerdfonts.override { fonts = [ "Meslo" "JetBrainsMono" ]; }) ];
+    packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "Meslo" "JetBrainsMono" "Agave" ]; })
+      font-awesome
+      powerline-fonts
+      powerline-symbols
+    ];
   };
  
   # Allow unfree and insecure packages
@@ -169,9 +166,12 @@
     libsForQt5.qt5.qtgraphicaleffects
   ];  
   
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      "dd0n3" = import ./home-manager/home.nix;
+    };
+  };
 
   # List services that you want to enable:
    
@@ -179,7 +179,7 @@
   services.tlp.enable = true;
   
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  # services.openssh.enable = true;
 
   # Garbage collector
   nix.gc = {
@@ -188,14 +188,10 @@
     options = "--delete-older-than 7d";
   };
 
-  system.autoUpgrade = {
-    enable = true;
-    channel = "https://nixos.org/channels/nixos-23.05";
-  };
 
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
 
 }
 

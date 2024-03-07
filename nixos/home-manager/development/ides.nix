@@ -2,9 +2,9 @@
 
 {
   home.packages = with pkgs; [
-    jetbrains.pycharm-professional
-    jetbrains.goland
     vscode
     neovim
+    android-studio
+    jetbrains.idea-community
   ];
 }
