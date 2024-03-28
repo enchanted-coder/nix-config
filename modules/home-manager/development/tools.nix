@@ -9,5 +9,7 @@
     bun
     gcc
     gnumake
+    github-desktop
+    woeusb-ng
   ];
 }
