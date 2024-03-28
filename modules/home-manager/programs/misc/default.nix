@@ -4,5 +4,6 @@
     ./git.nix
     ./mpv.nix
     ./lf.nix
+    ./others.nix
   ];
 }

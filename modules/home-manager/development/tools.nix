@@ -2,10 +2,12 @@
 
 {
   home.packages = with pkgs; [
+    php
+    php83Packages.composer
     nodejs
     python3
-    jdk
-    go
     bun
+    gcc
+    gnumake
   ];
 }
