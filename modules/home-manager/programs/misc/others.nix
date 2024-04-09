@@ -2,10 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    (waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-     })
-    )
     hyprpaper
     grim
     rofi-wayland
@@ -14,13 +10,12 @@
     zathura
     htop
     firefox
-    spotify
+    # spotify
     qbittorrent
-    discord
-    kitty
     pavucontrol
     pamixer
-    ventoy
+    ripgrep
+    xdg-utils
   ];
   
   nixpkgs = {

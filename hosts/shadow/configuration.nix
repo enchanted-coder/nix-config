@@ -20,6 +20,9 @@
     };
   };
 
+  # To prevent getting stuck at shutdown
+  systemd.extraConfig = "DefaulTimeoutStopSec=10s";
+
   # Bootloader and Filesystems
   boot = {
     supportedFilesystems = [ "ntfs" "exfat" "mtpfs" ];
@@ -45,8 +48,7 @@
       };
     };
     initrd.systemd.enable = true;
-    plymouth.enable = true;
-    plymouth.theme = "breeze";
+   
   };
 
   # Enable Networking
@@ -68,11 +70,11 @@
   # Services
   services = {
     # Desktop Environment
-    xserver = {
-      enable = true;
-      displayManager.sddm.enable = true;
-    };
-    desktopManager.plasma6.enable = true;
+    # xserver = {
+      # enable = true;
+      # displayManager.sddm.enable = true;
+    # };
+    # desktopManager.plasma6.enable = true;
 
     # Sound with pipewire
     pipewire = {
@@ -95,7 +97,8 @@
     fstrim.enable = true;
 
     # OpenSSH daemon
-    openssh.enable = true;
+    # openssh.enable = true;
+    
   };
 
   # Enable Window Manager
@@ -196,9 +199,10 @@
   # xdg
   xdg.portal = {
     enable = true;
-    xdgOpenUsePortal = false;
+    xdgOpenUsePortal = true;
     extraPortals = with pkgs; [
       # xdg-desktop-portal-hyprland
+      # xdg-desktop-portal-gtk
     ];
     wlr.enable = true;
   };

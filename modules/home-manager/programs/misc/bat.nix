@@ -1,10 +1,10 @@
-{ pkgs, lib, ... }:
-
+{ inputs, ... }: 
 {
   programs.bat = {
     enable = true;
     config = {
-      # theme = "TwoDark";
+      pager = "less -FR";
+      theme = "Dracula";
     };
   };
 }

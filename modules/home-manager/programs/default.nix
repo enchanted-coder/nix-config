@@ -1,7 +1,9 @@
 {
   imports = [
-    ./alactritty
-    ./zsh
+    # ./alactritty
+    ./hyprland
     ./misc
+    ./waybar
+    ./wofi
   ];
 }
