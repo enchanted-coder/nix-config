@@ -34,14 +34,14 @@
     };
 
     cursorTheme = {
-      name = "Bibata-Modern-Amber";
+      name = "Bibata-Modern-Classic";
       package = pkgs.bibata-cursors;
       size = 22;
     };
   };
   
   home.pointerCursor = {
-    name = "Bibata-Modern-Amber";
+    name = "Bibata-Modern-Classic";
     package = pkgs.bibata-cursors;
     size = 22;
   };

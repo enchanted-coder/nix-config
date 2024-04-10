@@ -26,7 +26,7 @@
         gaps_in = 3;
         gaps_out = 7;
         border_size = 2;
-        "col.active_border" = "rgb(af3a03)";
+        "col.active_border" = "rgb(b4befe)";
         "col.inactive_border" = "0x00000000";
 
       };
@@ -59,6 +59,7 @@
           contrast = 1.400;
           ignore_opacity = true;
           noise = 0.01170;
+  
           new_optimizations = true;
           xray = true;
         };
