@@ -10,7 +10,6 @@
     zathura
     htop
     firefox
-    # spotify
     qbittorrent
     pavucontrol
     pamixer

@@ -3,26 +3,43 @@
   programs.waybar.settings.mainBar = {
     position= "top";
     layer= "top";
-    height= 5;
+    height= 35;
     margin-top= 10;
     margin-bottom= 0;
     margin-left= 10;
     margin-right= 10;
+
     modules-left= [
-        "custom/launcher" 
-        "hyprland/workspaces"
-    ];
-    modules-center= [
-        "clock"
-    ];
-    modules-right= [
-        "tray" 
+        "custom/icon" 
+        "custom/separator"
         "cpu"
         "memory"
-        "disk"
-        "pulseaudio" 
-        "network"
+        "temperature"
+        "custom/separator"
+        "custom/window-name"
+        "tray"
     ];
+
+    modules-center= [
+        "hyprland/workspaces"
+    ];
+
+    modules-right= [
+        "network"
+        "backlight"
+        "pulseaudio"
+        "custom/right-arr" 
+        "battery"
+        "clock"
+    ];
+
+    "custom/window-name" = {
+        format = "<b>{}</b>";
+        exec = "hyprctl activewindow | grep class | awk '{print $2}'";
+        separate-outputs = true;
+        max-length = 35;
+    };
+
     clock= {
         calendar = {
           format = { today = "<span color='#b4befe'><b>{}</b></span>"; };
@@ -32,11 +49,9 @@
         tooltip-format= "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         format-alt= " {:%d/%m}";
     };
+
     "hyprland/workspaces"= {
-        active-only= false;
-        disable-scroll= true;
         format = "{icon}";
-        on-click= "activate";
         format-icons= {
             "1"= "󰈹";
             "2"= "";
@@ -48,54 +63,93 @@
             default = "";
             sort-by-number= true;
         };
-        persistent-workspaces = {
-            "1"= [];
-            "2"= [];
-            "3"= [];
-            "4"= [];
-            "5"= [];
-        };
+        on-scroll-up = "hyprctl dispatch workspace e-1";
+        on-scroll-down = "hyprctl dispatch workspace e+1";
+        on-click = "activate";
     };
+
     memory= {
-        format= "󰟜 {}%";
-        format-alt= "󰟜 {used} GiB"; # 
+        format= " {}%";
         interval= 2;
     };
+
     cpu= {
         format= "  {usage}%";
         format-alt= "  {avg_frequency} GHz";
         interval= 2;
     };
-    disk = {
-        # path = "/";
-        format = "󰋊 {percentage_used}%";
-        interval= 60;
-    };
+
     network = {
-        format-wifi = "  {signalStrength}%";
-        format-ethernet = "󰀂 ";
+        format-wifi = " {bandwidthTotalBytes}";
+        format-ethernet = "";
         tooltip-format = "Connected to {essid} {ifname} via {gwaddr}";
         format-linked = "{ifname} (No IP)";
         format-disconnected = "󰖪 ";
     };
+
+    backlight = {
+        format = "{icon} {percent}%";
+        format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+        ];
+        interval = 2;
+    };
+
+    "custom/right-arr" = {
+        format = "  ";
+    };
+
+    battery = {
+      format = "{icon} {capacity}%";
+      format-alt = "{icon} {time}";
+      format-charging = "󰚥 {capacity}%";
+      format-icons = [" " " " " " " "];
+      
+    };
+
     tray= {
         icon-size= 20;
         spacing= 8;
     };
+
     pulseaudio= {
-        format= "{icon} {volume}%";
-        format-muted= "󰖁 ";
+        format= "{icon} <b>{volume}</b> {format_source}";
+        format-source = "{volume}%  ";
+        format-source-muted = "  ";
+        format-bluetooth = " ᛒ <b>{volume}</b> ";
+        format-bluetooth-muted = " ";
+        format-muted= " {format_source}";
         format-icons= {
-            default= [" "];
+            default= ["" "" ""];
         };
         scroll-step= 5;
-        on-click= "pamixer -t";
+        
     };
-    "custom/launcher"= {
+    
+    temperature = {
+        critical-threshold = 40;
+        format = "{icon} {temperatureC}°C";
+        format-critical = "{icon} {temperatureC}°C";
+        format-icons = [
+            ""
+            ""
+            ""
+        ];
+        interval = 2;
+    };
+
+    "custom/icon"= {
         format= "";
-        on-click= "pkill wofi || wofi --show drun";
-        on-click-right= "pkill wofi || wallpaper-picker"; 
-        tooltip= "false";
+        
     };
+
   };
 }

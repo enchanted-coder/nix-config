@@ -14,82 +14,155 @@ in
   programs.waybar.style = ''
 
     * {
-        border: none;
-        border-radius: 0px;
         padding: 0;
         margin: 0;
-        min-height: 0px;
-        font-family: ${custom.font};
-        font-weight: ${custom.font_weight};
-        opacity: ${custom.opacity};
+        font-family: JetBrainsMono Nerd Font;
+        font-size: 14px;
     }
 
     window#waybar {
-        background: none;
+        background-color: rgba(0, 0, 0, 0);
     }
 
-    #workspaces {
-        font-size: 18px;
+    .modules-left {
+        background-color: #1d2021;
+        border-radius: 8px;
+        padding-right: 15px;
         padding-left: 15px;
-        
-    }
-    #workspaces button {
-        color: ${custom.text_color};
-        padding-left:  6px;
-        padding-right: 6px;
-    }
-    #workspaces button.empty {
-        color: #6c7086;
-    }
-    #workspaces button.active {
-        color: #b4befe;
     }
 
-    #tray, #pulseaudio, #network, #cpu, #memory, #disk, #clock {
-        font-size: ${custom.font_size};
-        color: ${custom.text_color};
+    .modules-center {
+        background-color: #1d2021;
+        border-radius: 8px;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .modules-right {
+        background-color: #1d2021;
+        border-radius: 8px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    #custom-icon {
+        font-size: 20px;
+        color: #af3a03; 
+        padding-right: 10px;
+    }
+
+    #cpu,
+    #memory,
+    #temperature {
+        font-size: 14px;
+        background: #282828;
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
 
     #cpu {
-        padding-left: 15px;
-        padding-right: 9px;
-        margin-left: 7px;
-    }
-    #memory {
-        padding-left: 9px;
-        padding-right: 9px;
-    }
-    #disk {
-        padding-left: 9px;
-        padding-right: 15px;
+        color: #b57614;
+        padding: 0px 10px 0px 12px;
+        border-radius: 5px 0px 0px 5px;
     }
 
-    #tray {
-        padding: 0 20px;
-        margin-left: 7px;
+    #memory {
+        color: #98971a;
+        padding: 0px 10px 0px 0px;
+    }
+
+    #temperature {
+        color: #fe8019;
+        padding: 0px 12px 0px 0px;
+        border-radius: 0px 5px 5px 0px;
+    }
+
+    #custom-window-name {
+        margin-right: 10px;
+        color: #ebdbb2;
+    }
+
+    #workspaces button:nth-child(1) label {
+        color: #076678;
+        margin: 0px 8px;
+    }
+
+    #workspaces button:nth-child(2) label {
+        color: #b16286;
+        margin: 0px 8px;
+    }
+
+    #workspaces button:nth-child(3) label {
+        color: #689d6a;
+        margin: 0px 8px;
+    }
+
+    #workspaces button:nth-child(4) label {
+        color: #b16286;
+        margin: 0px 8px;
+    }
+
+    #workspaces button:nth-child(5) label {
+        color: #bdae93;
+        margin: 0px 8px;
+    }
+
+    #workspaces button:nth-child(6) label {
+        color: #b57614;
+        margin: 0px 8px;
+    }
+
+    #battery {
+        color: #689d6a;
+        margin: 0px 10px 0px 0px;
+    }
+
+    #pulseaudio,
+    #backlight {
+        font-size: 14px;
+        background: #282828;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        color: #d79921;
+        padding: 0px 10px 0px 10px;
+        border-radius: 5px 0px 0px 5px;
     }
 
     #pulseaudio {
-        padding-left: 15px;
-        padding-right: 9px;
-        margin-left: 7px;
-    }
-    #network {
-        padding-left: 9px;
-        padding-right: 15px;
-    }
-    
-    #clock {
-        padding-left: 9px;
-        padding-right: 15px;
+        color: #458588;
+        padding: 0px 10px 0px 0px;
+        border-radius: 0px 5px 5px 0px;
     }
 
-    #custom-launcher {
-        font-size: 20px;
-        color: #b4befe;
-        font-weight: ${custom.font_weight};
+    #custom-right-arr {
+        color: #f2e5bc;
+    }
+
+    #network {
+        color: #fe8019;
+        margin-right: 10px;
+    }
+
+    #custom-dot {
+        color: #6e738d;
         padding-left: 10px;
-        padding-right: 15px;
+        padding-right: 10px;
+    }
+
+    #custom-dot-alt {
+        color: #a5adcb;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #clock {
+        padding-left: 10px;
+        color: #f2e5bc;
+        background-color: #cad3f5;
+        padding-right: 10px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        border-radius: 5px;
     }
   '';
 }
