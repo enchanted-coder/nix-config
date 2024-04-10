@@ -7,7 +7,7 @@
       exec-once = [
         "waybar &"
         "hyprpaper &"
-        "discord &"
+        # "discord &"
         
       ];
 
@@ -26,10 +26,9 @@
         gaps_in = 3;
         gaps_out = 7;
         border_size = 2;
-        "col.active_border" = "rgb(cba6f7) rgb(94e2d5) 45deg";
+        "col.active_border" = "rgb(af3a03)";
         "col.inactive_border" = "0x00000000";
-        # border_part_of_window = false;
-        # no_border_on_floating = false;
+
       };
 
       misc = {
@@ -38,19 +37,12 @@
       };
 
       dwindle = {
-        # no_gaps_when_only = false;
-        # force_split = 0;
-        # special_scale_factor = 1.0;
-        # split_width_multiplier = 1.0;
-        # use_active_for_splits = true;
         pseudotile = "yes";
         preserve_split = "yes";
       };
 
       master = {
         new_is_master = true;
-        special_scale_factor = 1;
-        no_gaps_when_only = false;
       };
 
       decoration = {
@@ -84,39 +76,24 @@
         enabled = true;
 
         bezier = [
-          "fluent_decel, 0, 0.2, 0.4, 1"
-          "easeOutCirc, 0, 0.55, 0.45, 1"
-          "easeOutCubic, 0.33, 1, 0.68, 1"
-          "easeinoutsine, 0.37, 0, 0.63, 1"
+          "overshot, 0.7, 0.6, 0.1, 1.1"
         ];
 
         animation = [
-          # Windows
-          "windowsIn, 1, 3, easeOutCubic, popin 30%" # window open
-          "windowsOut, 1, 3, fluent_decel, popin 70%" # window close.
-          "windowsMove, 1, 2, easeinoutsine, slide" # everything in between, moving, dragging, resizing.
-
-          # Fade
-          "fadeIn, 1, 3, easeOutCubic" # fade in (open) -> layers and windows
-          "fadeOut, 1, 2, easeOutCubic" # fade out (close) -> layers and windows
-          "fadeSwitch, 0, 1, easeOutCirc" # fade on changing activewindow and its opacity
-          "fadeShadow, 1, 10, easeOutCirc" # fade on changing activewindow for shadows
-          "fadeDim, 1, 4, fluent_decel" # the easing of the dimming of inactive windows
-          "border, 1, 2.7, easeOutCirc" # for animating the border's color switch speed
-          "borderangle, 1, 30, fluent_decel, once" # for animating the border's gradient angle - styles: once (default), loop
-          "workspaces, 1, 4, easeOutCubic, slide" # styles: slide, slidevert, fade, slidefade, slidefadevert
+          "windows, 1, 4, overshot, slide"
+          "border, 1, 14, default"
+          "fade, 1, 4, default"
+          "workspaces, 1, 4, overshot, slide"
         ];
       };
 
       bind = [
-        # show keybinds list
-        "$mainMod, F1, exec, show-keybinds"
-
         # keybindings
         "$mainMod, Return, exec, kitty"
         "ALT, Return, exec, kitty --title float_kitty"
         "$mainMod, C, killactive,"
-        "$mainMod, Space, togglefloating,"
+        "$mainMod, M, exit,"
+        "$mainMod, V, togglefloating,"
         "$mainMod, F, exec, firefox"
         "$mainMod, R, exec, pkill wofi || wofi --show drun"
         "$mainMod SHIFT, D, exec, hyprctl dispatch exec '[workspace 4 silent] discord'"
@@ -176,6 +153,7 @@
         ",XF86AudioRaiseVolume,exec, pamixer -i 2"
         ",XF86AudioLowerVolume,exec, pamixer -d 2"
         ",XF86AudioMute,exec, pamixer -t"
+        ",XF86AudioMicMute, exec, pamixer --default-source -t"
         ",XF86AudioPlay,exec, playerctl play-pause"
         ",XF86AudioNext,exec, playerctl next"
         ",XF86AudioPrev,exec, playerctl previous"
@@ -196,8 +174,6 @@
         "center,title:^(float_kitty)$"
         "size 950 600,title:^(float_kitty)$"
         "workspace 4 silent, discord"
-        "workspace 2 firefox"
-        "workspace 5 qBittorrent"
         "pin,wofi"
         "float,wofi"
         "noborder,wofi"

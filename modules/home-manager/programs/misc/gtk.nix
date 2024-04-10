@@ -14,6 +14,7 @@
       name = "JetBrainsMono Nerd Font";
       size = 11;
     };
+
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.catppuccin-papirus-folders.override {
@@ -21,6 +22,7 @@
         accent = "lavender";
       };
     };
+
     theme = {
       name = "Catppuccin-Mocha-Compact-Lavender-Dark";
       package = pkgs.catppuccin-gtk.override {
@@ -30,15 +32,16 @@
         variant = "mocha";
       };
     };
+
     cursorTheme = {
-      name = "Bibata-Modern-Classic";
+      name = "Bibata-Modern-Amber";
       package = pkgs.bibata-cursors;
       size = 22;
     };
   };
   
   home.pointerCursor = {
-    name = "Bibata-Modern-Classic";
+    name = "Bibata-Modern-Amber";
     package = pkgs.bibata-cursors;
     size = 22;
   };

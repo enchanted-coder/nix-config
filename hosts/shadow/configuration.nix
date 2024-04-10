@@ -161,7 +161,7 @@
       ];
     };
   };
-  
+
   # Configure programs
   programs = {
     # Shell
@@ -186,6 +186,8 @@
       enableSSHSupport = true;
     };
   };
+
+  
 
   
   # List packages installed in system profile. To search, run:
