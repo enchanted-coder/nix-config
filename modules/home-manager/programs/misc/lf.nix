@@ -8,6 +8,7 @@
     enable = true;
 
     settings = {
+      sixel = true;
       preview = true;
       hidden = false;
       drawbox = true;

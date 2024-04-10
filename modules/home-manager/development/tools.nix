@@ -6,11 +6,8 @@
     # php83Packages.composer
     nodejs
     python3
-    bun
+    # bun
     gcc
     gnumake
-    supabase-cli
-    rustup
-    # woeusb-ng
   ];
 }

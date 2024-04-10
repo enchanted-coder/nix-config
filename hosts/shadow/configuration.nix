@@ -177,7 +177,7 @@
     };
 
     # KDE Connect 
-    kdeconnect.enable = true;
+    # kdeconnect.enable = true;
 
     # Programs that need SUID wrappers
     mtr.enable = true;
