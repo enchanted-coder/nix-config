@@ -158,7 +158,7 @@ in
     #clock {
         padding-left: 10px;
         color: #f2e5bc;
-        background-color: #cad3f5;
+        background-color: #b16286;
         padding-right: 10px;
         margin-top: 5px;
         margin-bottom: 5px;

@@ -16,6 +16,7 @@
         "memory"
         "temperature"
         "custom/separator"
+        "custom/window-icon"
         "custom/window-name"
         "tray"
     ];
@@ -58,7 +59,6 @@
             "3"= "󰘙";
             "4"= "󰙯";
             "5"= "";
-            "6"= "";
             urgent= "";
             default = "";
             sort-by-number= true;
@@ -149,6 +149,14 @@
     "custom/icon"= {
         format= "";
         
+    };
+
+    "custom/separtor" = {
+      format = " ";
+    };
+
+    "custom/window-icon" = {
+      # to be added
     };
 
   };
