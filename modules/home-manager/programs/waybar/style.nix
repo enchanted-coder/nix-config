@@ -57,6 +57,7 @@ in
         font-size: 20px;
         color: ${custom.lavender}; 
         padding-right: 10px;
+        margin-right: 5px;
     }
 
     #cpu,
@@ -85,8 +86,9 @@ in
         border-radius: 0px 5px 5px 0px;
     }
 
-    #custom-window-name {
+    #window {
         margin-right: 10px;
+        margin-left: 10px;
         color: ${custom.lavender};
     }
 

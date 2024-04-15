@@ -15,6 +15,8 @@
     pamixer
     ripgrep
     xdg-utils
+    libsForQt5.kdenlive
+    glaxnimate
   ];
   
   nixpkgs = {

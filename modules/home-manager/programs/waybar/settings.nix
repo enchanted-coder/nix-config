@@ -17,7 +17,7 @@
         "temperature"
         "custom/separator"
         "custom/window-icon"
-        "custom/window-name"
+        "hyprland/window"
         "tray"
     ];
 
@@ -34,9 +34,9 @@
         "clock"
     ];
 
-    "custom/window-name" = {
+    "hyprland/window" = {
         format = "<b>{}</b>";
-        exec = "hyprctl activewindow | grep class | awk '{print $2}'";
+        # exec = "hyprctl activewindow | grep class | awk '{print $2}'";
         separate-outputs = true;
         max-length = 35;
     };

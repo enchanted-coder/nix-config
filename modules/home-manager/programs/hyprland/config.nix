@@ -7,7 +7,7 @@
       exec-once = [
         "waybar &"
         "hyprpaper &"
-        # "discord &"
+        "discord &"
         
       ];
 
@@ -175,6 +175,8 @@
         "center,title:^(float_kitty)$"
         "size 950 600,title:^(float_kitty)$"
         "workspace 4 silent, discord"
+        "workspace 5 silent, Spotify"
+        "workspace 3 silent, Code"
         "pin,wofi"
         "float,wofi"
         "noborder,wofi"

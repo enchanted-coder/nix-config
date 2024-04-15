@@ -6,6 +6,13 @@
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     pkgs.twemoji-color-font
     pkgs.noto-fonts-emoji
+    (pkgs.catppuccin-kvantum.override {
+      accent = "Lavender";
+      variant = "Mocha";
+     })
+    pkgs.libsForQt5.qtstyleplugin-kvantum
+    pkgs.libsForQt5.qt5ct
+
   ];
 
   gtk = {
@@ -34,15 +41,27 @@
     };
 
     cursorTheme = {
-      name = "Bibata-Modern-Classic";
-      package = pkgs.bibata-cursors;
-      size = 22;
+      name = "Catppuccin-Mocha-Dark-Cursors";
+      package = pkgs.catppuccin-cursors.mochaDark;
+      size = 16;
     };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme = "qtct";
+    style = {
+      name = "kvantum";
+    };
+  };
+
+  xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
+    General.theme = "Catppuccin-Macchiato-Blue";
   };
   
   home.pointerCursor = {
-    name = "Bibata-Modern-Classic";
-    package = pkgs.bibata-cursors;
-    size = 22;
+    name = "Catppuccin-Mocha-Dark-Cursors";
+    package = pkgs.catppuccin-cursors.mochaDark;
+    size = 16;
   };
 }
