@@ -20,8 +20,22 @@
     };
   };
 
-  # To prevent getting stuck at shutdown
-  systemd.extraConfig = "DefaulTimeoutStopSec=10s";
+  # Systemd stuff 
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "grpahical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+  };
 
   # Bootloader and Filesystems
   boot = {
@@ -87,7 +101,7 @@
     };
 
     # Printing
-    # printing.enable = true;
+    printing.enable = true;
 
     # File Management
     gvfs.enable = true;
@@ -98,6 +112,8 @@
 
     # OpenSSH daemon
     # openssh.enable = true;
+
+    tlp.enable = true;
     
   };
 
@@ -110,8 +126,11 @@
     };
   };
 
-  # pipewire
-  security.rtkit.enable = true;
+  # Security
+  security = {
+    rtkit.enable = true;
+    polkit.enable = true;
+  };
   
   # OpenGL
   hardware.opengl = {
@@ -196,7 +215,14 @@
   environment.systemPackages = with pkgs; [
    vim
    wget
+   # winetricks (all versions)
+    winetricks
+
+    # native wayland support (unstable)
+    wineWowPackages.waylandFull
   ];
+
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # xdg
   xdg.portal = {
@@ -204,7 +230,7 @@
     xdgOpenUsePortal = true;
     extraPortals = with pkgs; [
       # xdg-desktop-portal-hyprland
-      # xdg-desktop-portal-gtk
+      xdg-desktop-portal-gtk
     ];
     wlr.enable = true;
   };

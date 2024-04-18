@@ -5,7 +5,6 @@
     hyprpaper
     grim
     rofi-wayland
-    neofetch
     brightnessctl
     zathura
     htop
@@ -15,8 +14,9 @@
     pamixer
     ripgrep
     xdg-utils
-    libsForQt5.kdenlive
-    glaxnimate
+    neofetch
+    htop
+    heroic
   ];
   
   nixpkgs = {

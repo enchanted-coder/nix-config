@@ -6,12 +6,6 @@
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     pkgs.twemoji-color-font
     pkgs.noto-fonts-emoji
-    (pkgs.catppuccin-kvantum.override {
-      accent = "Lavender";
-      variant = "Mocha";
-     })
-    pkgs.libsForQt5.qtstyleplugin-kvantum
-    pkgs.libsForQt5.qt5ct
 
   ];
 
@@ -49,16 +43,12 @@
 
   qt = {
     enable = true;
-    platformTheme = "qtct";
+    platformTheme = "gtk";
     style = {
-      name = "kvantum";
+      name = "breeze";
     };
   };
 
-  xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
-    General.theme = "Catppuccin-Macchiato-Blue";
-  };
-  
   home.pointerCursor = {
     name = "Catppuccin-Mocha-Dark-Cursors";
     package = pkgs.catppuccin-cursors.mochaDark;

@@ -5,9 +5,9 @@
     ./git.nix
     ./gtk.nix
     ./kitty.nix
+    ./lf.nix
     ./mako.nix
     ./mpv.nix
-    ./lf.nix
     ./others.nix
     ./starship.nix
     ./spotify.nix
