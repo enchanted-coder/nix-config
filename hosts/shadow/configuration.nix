@@ -4,7 +4,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
     ];
 
   # Enable Experimental Features and Package Management
@@ -69,6 +68,7 @@
   networking = {
     hostName = "shadow";
     networkmanager.enable = true;
+    # firewall.allowedTCPPorts = [ 80 443 ];
   };
 
   # Set your time zone.
@@ -121,7 +121,6 @@
   programs = {
     hyprland = {
       enable = true;
-      package = inputs.hyprland.packages."${pkgs.system}".hyprland;
       xwayland.enable = true;
     };
   };
@@ -215,6 +214,7 @@
   environment.systemPackages = with pkgs; [
    vim
    wget
+   cmake
    # winetricks (all versions)
     winetricks
 
