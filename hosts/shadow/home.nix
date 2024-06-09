@@ -19,7 +19,7 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
-    "electron"
+    
   ];
 
   home.file = {

@@ -1,15 +1,14 @@
-{inputs, ...}: {
-  services.hyprpaper = let
-    wallpaperDir = "${inputs.self}/modules/extends/serene/home/desktop/wm/hyprland/wallpapers";
-  in {
+{ config, lib, pkgs, ... }:
+{
+  services.hyprpaper = {
     enable = true;
-
-    preloads = [
-      "${wallpaperDir}/hypr95.png"
-    ];
-
-    wallpapers = [
-      ",${wallpaperDir}/hypr95.png"
-    ];
+    settings = {
+      preload = [
+        "~/pictures/gruv-material.png"
+      ];
+      wallpaper = [
+        "eDP-1,~/pictures/gruv-material.png"
+      ];
+    };
   };
 }

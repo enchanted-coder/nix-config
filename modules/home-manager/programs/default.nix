@@ -1,6 +1,6 @@
 {
   imports = [
-    # ./alactritty
+    ./alactritty
     ./hyprland
     ./misc
     ./waybar

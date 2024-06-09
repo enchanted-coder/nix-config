@@ -48,17 +48,18 @@
         format = " {:%H:%M}";
         tooltip= "true";
         tooltip-format= "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-        format-alt= " {:%d/%m}";
+        format-alt= " {:%d/%m}";
     };
 
     "hyprland/workspaces"= {
         format = "{icon}";
         format-icons= {
-            "1"= "󰈹";
-            "2"= "";
-            "3"= "󰘙";
-            "4"= "󰙯";
-            "5"= "";
+            "1"= " ";
+            "2"= " ";
+            "3"= " ";
+            "4"= " ";
+            "5"= " ";
+            "6"= " ";
             urgent= "";
             default = "";
             sort-by-number= true;
@@ -80,11 +81,11 @@
     };
 
     network = {
-        format-wifi = " {bandwidthTotalBytes}";
-        format-ethernet = "";
+        format-wifi = "  {essid}";
+        format-ethernet = "";
         tooltip-format = "Connected to {essid} {ifname} via {gwaddr}";
         format-linked = "{ifname} (No IP)";
-        format-disconnected = "󰖪 ";
+        format-disconnected = " ";
     };
 
     backlight = {
@@ -110,8 +111,8 @@
     battery = {
       format = "{icon} {capacity}%";
       format-alt = "{icon} {time}";
-      format-charging = "󰚥 {capacity}%";
-      format-icons = [" " " " " " " "];
+      format-charging = " {capacity}%";
+      format-icons = [" " " " " " " "];
       
     };
 

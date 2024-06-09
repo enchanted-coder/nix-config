@@ -36,11 +36,11 @@
     };
   };
 
-  # Bootloader and Filesystems
+  # Bootloader and Filesystems 
   boot = {
     supportedFilesystems = [ "ntfs" "exfat" "mtpfs" ];
     loader = {
-      timeout = 1;
+      timeout = 2;
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
@@ -62,6 +62,30 @@
     };
     initrd.systemd.enable = true;
    
+  }; 
+/*
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.timeout = 2;
+  boot.initrd.enable = true;
+  boot.initrd.systemd.enable = true;
+  boot.consoleLogLevel = 3;
+  boot.plymouth = {
+    enable = true;
+    font = "${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf";
+    themePackages = [ pkgs.catppuccin-plymouth ];
+    theme = "catppuccin-macchiato";
+  }; */
+
+  # Enable Display Manager
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --time-format '%I:%M %p | %a • %h | %F' --cmd Hyprland";
+        user = "greeter";
+      };
+    };
   };
 
   # Enable Networking
@@ -84,10 +108,10 @@
   # Services
   services = {
     # Desktop Environment
-    # xserver = {
-      # enable = true;
+    xserver = {
+      enable = true;
       # displayManager.sddm.enable = true;
-    # };
+    };
     # desktopManager.plasma6.enable = true;
 
     # Sound with pipewire
@@ -158,7 +182,9 @@
     isNormalUser = true;
     description = "dd0n3";
     extraGroups = [ "networkmanager" "wheel" "disk" "power" "video" ];
-    packages = with pkgs; [];
+    packages = with pkgs; [
+      teams-for-linux
+    ];
     shell = pkgs.zsh;
   };
 
@@ -174,6 +200,7 @@
     config = {
       allowUnfree = true;
       allowInsecure = true;
+      allowUnsupportedSystem = true;
       PermittedInsecurePackages = [
 
       ];
@@ -204,9 +231,6 @@
       enableSSHSupport = true;
     };
   };
-
-  
-
   
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -215,24 +239,20 @@
    vim
    wget
    cmake
-   # winetricks (all versions)
-    winetricks
-
-    # native wayland support (unstable)
-    wineWowPackages.waylandFull
+   greetd.tuigreet
   ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
 
   # xdg
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
     extraPortals = with pkgs; [
-      # xdg-desktop-portal-hyprland
-      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
     ];
-    wlr.enable = true;
+    # wlr.enable = true;
   };
 
   # Open ports in the firewall.
@@ -247,6 +267,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 
 }
