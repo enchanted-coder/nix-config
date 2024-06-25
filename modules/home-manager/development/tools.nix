@@ -10,6 +10,6 @@
     gcc
     gnumake
     license-generator
-    
+    inetutils    
   ];
 }

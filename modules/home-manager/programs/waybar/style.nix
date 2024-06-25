@@ -3,18 +3,17 @@ let custom = {
     font = "JetBrainsMono Nerd Font";
     font_size = "14px";
     font_weight = "bold";
-    bg0_h = "#1d2021";
-    bg0 = "#282828";
-    fg1 = "#ebdbb2";
-    lavender = "#83a598";
-    mauve = "#b16286";
-    peach = "#fb4934";
-    red = "#cc241d";
-    sapphire = "#076678";
-    aqua = "#427b58";
-    green = "#98971a";
-    teal = "#458588";
-    flamingo = "#d65d0e";
+    crust = "#11111b";
+    base = "#1e1e2e";
+    mantle = "#181825";
+    lavender = "#b4befe";
+    mauve = "#cba6f7";
+    peach = "#fab387";
+    red = "#f38ba8";
+    sapphire = "#74c7ec";
+    green = "#a6e3a1";
+    teal = "#94e2d5";
+    flamingo = "#f2cdcd";
     opacity = "0.98";
 };
 in 
@@ -34,21 +33,21 @@ in
     }
 
     .modules-left {
-        background-color: ${custom.bg0_h};
+        background-color: ${custom.crust};
         border-radius: 8px;
         padding-right: 15px;
         padding-left: 15px;
     }
 
     .modules-center {
-        background-color: ${custom.bg0_h};
+        background-color: ${custom.crust};
         border-radius: 8px;
         padding-right: 10px;
         padding-left: 10px;
     }
 
     .modules-right {
-        background-color: ${custom.bg0_h};
+        background-color: ${custom.crust};
         border-radius: 8px;
         padding-right: 15px;
         padding-left: 15px;
@@ -56,7 +55,7 @@ in
 
     #custom-icon {
         font-size: 20px;
-        color: ${custom.flamingo}; 
+        color: ${custom.lavender}; 
         padding-right: 10px;
         margin-right: 5px;
     }
@@ -65,24 +64,24 @@ in
     #memory,
     #temperature {
         font-size: 14px;
-        background: ${custom.bg0};
+        background: ${custom.mantle};
         margin-top: 5px;
         margin-bottom: 5px;
     }
 
     #cpu {
-        color: #8ec07c;
+        color: ${custom.peach};
         padding: 0px 10px 0px 12px;
         border-radius: 5px 0px 0px 5px;
     }
 
     #memory {
-        color: ${custom.peach};
+        color: ${custom.sapphire};
         padding: 0px 10px 0px 0px;
     }
 
     #temperature {
-        color: ${custom.lavender};
+        color: ${custom.red};
         padding: 0px 12px 0px 0px;
         border-radius: 0px 5px 5px 0px;
     }
@@ -90,7 +89,7 @@ in
     #window {
         margin-right: 10px;
         margin-left: 10px;
-        color: ${custom.fg1};
+        color: ${custom.lavender};
     }
 
     #workspaces button:nth-child(1) label {
@@ -104,37 +103,37 @@ in
     }
 
     #workspaces button:nth-child(3) label {
-        color: ${custom.teal};
+        color: ${custom.red};
         margin: 0px 8px;
     }
 
     #workspaces button:nth-child(4) label {
-        color: ${custom.mauve};
+        color: ${custom.lavender};
         margin: 0px 8px;
     }
 
     #workspaces button:nth-child(5) label {
-        color: ${custom.aqua};
+        color: ${custom.sapphire};
         margin: 0px 8px;
     }
 
     #workspaces button:nth-child(6) label {
-        color: ${custom.peach};
+        color: ${custom.mauve};
         margin: 0px 8px;
     }
 
     #battery {
-        color: ${custom.aqua};
+        color: ${custom.green};
         margin: 0px 10px 0px 0px;
     }
 
     #pulseaudio,
     #backlight {
         font-size: 14px;
-        background: ${custom.bg0};
+        background: ${custom.mantle};
         margin-top: 5px;
         margin-bottom: 5px;
-        color: #b57614;
+        color: ${custom.peach};
         padding: 0px 10px 0px 10px;
         border-radius: 5px 0px 0px 5px;
     }
@@ -150,7 +149,7 @@ in
     }
 
     #network {
-        color: ${custom.flamingo};
+        color: ${custom.green};
         margin-right: 10px;
     }
 
@@ -168,8 +167,8 @@ in
 
     #clock {
         padding-left: 10px;
-        color: ${custom.fg1};
-        background-color: ${custom.bg0};
+        color: ${custom.lavender};
+        background-color: ${custom.base};
         padding-right: 10px;
         margin-top: 5px;
         margin-bottom: 5px;

@@ -17,18 +17,26 @@
     };
 
     iconTheme = {
-      name = "Gruvbox Plus";
-      package = pkgs.gruvbox-plus-icons;
+      name = "Papirus-Dark";
+      package = pkgs.catppuccin-papirus-folders.override {
+        flavor = "mocha";
+        accent = "lavender";
+      };
     };
 
     theme = {
-      name = "Flat-Remix-GTK-Grey-Darkest";
-      package = pkgs.flat-remix-gtk;
+      name = "Catppuccin-Mocha-Compact-Lavender-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "lavender" ];
+        size = "compact";
+        # tweaks = [ "rimless" ];
+        variant = "mocha";
+      };
     };
 
     cursorTheme = {
-      name = "Bibata-Modern-Classic";
-      package = pkgs.bibata-cursors;
+      name = "Catppuccin-Mocha-Dark-Cursors";
+      package = pkgs.catppuccin-cursors.mochaDark;
       size = 16;
     };
   };
@@ -42,8 +50,8 @@
   };
 
   home.pointerCursor = {
-    name = "Bibata-Modern-Classic";
-    package = pkgs.bibata-cursors;
+    name = "Catppuccin-Mocha-Dark-Cursors";
+    package = pkgs.catppuccin-cursors.mochaDark;
     size = 16;
   };
 }

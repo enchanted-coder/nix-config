@@ -16,8 +16,7 @@
     xdg-utils
     neofetch
     htop
-    unzip
-    chromium
+    heroic
   ];
   
   nixpkgs = {
