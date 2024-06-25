@@ -6,8 +6,8 @@
       # autostart
       exec-once = [
         "waybar &"
+        # "hyprpaper &"
         # "discord &"
-        "spotify &"
         
       ];
 
@@ -26,9 +26,8 @@
         gaps_in = 3;
         gaps_out = 7;
         border_size = 2;
-        "col.active_border" = "rgb(cc241d)";
-        #"col.inactive_border" = "0x00000000";
-        "col.inactive_border" = "rgb(1d2021)";
+        "col.active_border" = "rgb(b4befe)";
+        "col.inactive_border" = "0x00000000";
 
       };
 
@@ -43,14 +42,15 @@
       };
 
       master = {
-        new_is_master = true;
+        # change this value to true if not aesthetic
+        new_is_master = false;
       };
 
       decoration = {
         rounding = 9;
-        #active_opacity = 0.90;
-        #inactive_opacity = 0.90;
-        #fullscreen_opacity = 1.0;
+        # active_opacity = 0.90;
+        # inactive_opacity = 0.90;
+        # fullscreen_opacity = 1.0;
 
         blur = {
           enabled = true;
@@ -91,8 +91,8 @@
 
       bind = [
         # keybindings
-        "$mainMod, Return, exec, alacritty"
-        "ALT, Return, exec, alacritty --title float_alacritty"
+        "$mainMod, Return, exec, kitty"
+        "ALT, Return, exec, kitty --title float_kitty"
         "$mainMod, C, killactive,"
         "$mainMod, M, exit,"
         "$mainMod, V, togglefloating,"
@@ -176,7 +176,7 @@
         "center,title:^(float_kitty)$"
         "size 950 600,title:^(float_kitty)$"
         "workspace 4 silent, discord"
-        "workspace 5 silent, spotify"
+        "workspace 5 silent, Spotify"
         "workspace 3 silent, Code"
         "pin,wofi"
         "float,wofi"

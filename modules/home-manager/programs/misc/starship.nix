@@ -11,31 +11,31 @@
       right_format = "$cmd_duration";
       
       directory = {
-        format = "[ ](bold #98971a)[ $path ]($style)";
-        style = "bold #689d6a";
+        format = "[ ](bold #89b4fa)[ $path ]($style)";
+        style = "bold #b4befe";
       };
 
       character = {
-        success_symbol = "[ ](bold #d65d0e)[ ➜](bold green)";
+        success_symbol = "[ ](bold #89b4fa)[ ➜](bold green)";
         error_symbol = "[ ](bold #89b4fa)[ ➜](bold red)";
         # error_symbol = "[ ](bold #89dceb)[ ✗](bold red)";
       };
 
       cmd_duration = {
-        format = "[]($style)[[󰔚 ](bg:#282828 fg:#d4c097 bold)$duration](bg:#282828 fg:#BBC3DF)[ ]($style)";
-        disabled = true;
-        style = "bg:none fg:#282828";
+        format = "[]($style)[[󰔚 ](bg:#161821 fg:#d4c097 bold)$duration](bg:#161821 fg:#BBC3DF)[ ]($style)";
+        disabled = false;
+        style = "bg:none fg:#161821";
     };        
 
       directory.substitutions = {
         "~" = "󰋞";
-        "Documents" = "󰈙 ";
+        "Documents" = " ";
         "Downloads" = " ";
         "Music" = " ";
         "Pictures" = " ";
       };
 
-      
+      palette = "catppuccin_mocha";
     } // builtins.fromTOML (builtins.readFile "${inputs.catppuccin-starship}/palettes/mocha.toml");
   };
 }

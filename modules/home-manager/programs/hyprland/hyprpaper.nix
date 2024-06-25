@@ -4,10 +4,10 @@
     enable = true;
     settings = {
       preload = [
-        "~/pictures/gruv-material.png"
+        "~/shadow/modules/home-manager/programs/hyprland/wallpapers/wallpaper.png"
       ];
       wallpaper = [
-        "eDP-1,~/pictures/gruv-material.png"
+        "eDP-1,~/shadow/modules/home-manager/programs/hyprland/wallpapers/wallpaper.png"
       ];
     };
   };

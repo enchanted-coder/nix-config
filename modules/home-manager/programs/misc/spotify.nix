@@ -4,7 +4,8 @@ in {
   imports = [ inputs.spicetify-nix.homeManagerModule ];
   programs.spicetify = {
     enable = true;
-    theme = spicePkgs.themes.Onepunch;
+    theme = spicePkgs.themes.catppuccin;
+    colorScheme = "mocha";
     enabledCustomApps = with spicePkgs.apps; [ lyrics-plus ];
     enabledExtensions = with spicePkgs.extensions; [
       hidePodcasts
