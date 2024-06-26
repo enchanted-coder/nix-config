@@ -4,10 +4,10 @@
     enable = true;
     settings = {
       preload = [
-        "~/shadow/modules/home-manager/programs/hyprland/wallpapers/nix-magenta-pink.png"
+        "~/shadow/modules/home-manager/programs/hyprland/wallpapers/smd.jpg"
       ];
       wallpaper = [
-        "eDP-1,~/shadow/modules/home-manager/programs/hyprland/wallpapers/nix-magenta-pink.png"
+        "eDP-1,~/shadow/modules/home-manager/programs/hyprland/wallpapers/smd.jpg"
       ];
     };
   };

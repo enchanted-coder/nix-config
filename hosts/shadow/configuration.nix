@@ -101,16 +101,16 @@
     # printing.enable = true;
 
     # File Management
-    # gvfs.enable = true;
-    # tumbler.enable = true;
+    gvfs.enable = true;
+    tumbler.enable = true;
 
     # SSD
-    # fstrim.enable = true;
+    fstrim.enable = true;
 
     # OpenSSH daemon
     # openssh.enable = true;
 
-    # tlp.enable = true;
+    tlp.enable = true;
     
   };
 
@@ -210,6 +210,9 @@
    cmake
    # greetd.tuigreet
   ];
+
+  # KDE Connect
+  # kdeconnect.enable = true
 
   #environment.sessionVariables.NIXOS_OZONE_WL = "1";
   #environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";

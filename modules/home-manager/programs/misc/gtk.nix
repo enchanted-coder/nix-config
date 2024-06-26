@@ -35,9 +35,9 @@
     };
 
     cursorTheme = {
-      name = "Catppuccin-Latte-Mauve-Cursors";
-      package = pkgs.catppuccin-cursors.latteMauve;
-      size = 16;
+      name = "Bibata-Modern-Amber";
+      package = pkgs.bibata-cursors;
+      size = 22;
     };
   };
 
@@ -50,8 +50,8 @@
   };
 
   home.pointerCursor = {
-    name = "Catppuccin-Latte-Mauve-Cursors";
-    package = pkgs.catppuccin-cursors.latteMauve;
-    size = 16;
+    name = "Bibata-Modern-Amber";
+    package = pkgs.bibata-cursors;
+    size = 22;
   };
 }

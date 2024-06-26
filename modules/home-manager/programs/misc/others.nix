@@ -4,7 +4,6 @@
   home.packages = with pkgs; [
     hyprpaper
     grim
-    rofi-wayland
     brightnessctl
     zathura
     htop
@@ -17,6 +16,7 @@
     neofetch
     htop
     heroic
+    kodi-gbm
   ];
   
   nixpkgs = {
