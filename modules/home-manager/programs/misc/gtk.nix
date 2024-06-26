@@ -17,26 +17,26 @@
     };
 
     iconTheme = {
-      name = "Papirus-Dark";
+      name = "Papirus-Light";
       package = pkgs.catppuccin-papirus-folders.override {
-        flavor = "mocha";
-        accent = "lavender";
+        flavor = "latte";
+        accent = "mauve";
       };
     };
 
     theme = {
-      name = "Catppuccin-Mocha-Compact-Lavender-Dark";
+      name = "Catppuccin-Latte-Compact-Mauve-Light";
       package = pkgs.catppuccin-gtk.override {
-        accents = [ "lavender" ];
+        accents = [ "mauve" ];
         size = "compact";
         # tweaks = [ "rimless" ];
-        variant = "mocha";
+        variant = "latte";
       };
     };
 
     cursorTheme = {
-      name = "Catppuccin-Mocha-Dark-Cursors";
-      package = pkgs.catppuccin-cursors.mochaDark;
+      name = "Catppuccin-Latte-Mauve-Cursors";
+      package = pkgs.catppuccin-cursors.latteMauve;
       size = 16;
     };
   };
@@ -45,13 +45,13 @@
     enable = true;
     platformTheme.name = "gtk";
     style = {
-      name = "breeze";
+      name = "kvantum";
     };
   };
 
   home.pointerCursor = {
-    name = "Catppuccin-Mocha-Dark-Cursors";
-    package = pkgs.catppuccin-cursors.mochaDark;
+    name = "Catppuccin-Latte-Mauve-Cursors";
+    package = pkgs.catppuccin-cursors.latteMauve;
     size = 16;
   };
 }

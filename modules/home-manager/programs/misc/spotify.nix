@@ -5,7 +5,7 @@ in {
   programs.spicetify = {
     enable = true;
     theme = spicePkgs.themes.catppuccin;
-    colorScheme = "mocha";
+    colorScheme = "latte";
     enabledCustomApps = with spicePkgs.apps; [ lyrics-plus ];
     enabledExtensions = with spicePkgs.extensions; [
       hidePodcasts

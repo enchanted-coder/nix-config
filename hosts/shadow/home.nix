@@ -10,7 +10,7 @@
   home.username = "dd0n3";
   home.homeDirectory = "/home/dd0n3";
 
-  home.stateVersion = "23.11"; 
+  home.stateVersion = "24.05"; 
 
 
   home.packages = with pkgs; [

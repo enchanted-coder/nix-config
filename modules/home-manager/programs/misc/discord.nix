@@ -7,7 +7,7 @@
   ];
   xdg.configFile."Vencord/themes/custom.css".text = '' 
     /**
-    * @name Catppuccin Mocha
+    * @name Catppuccin Latte
     * @author winston#0001
     * @authorId 505490445468696576
     * @version 0.2.0
@@ -16,6 +16,6 @@
     * @invite r6Mdz5dpFc
     * **/
 
-    @import url("https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css");
+    @import url("https://catppuccin.github.io/discord/dist/catppuccin-latte.theme.css");
   '';
 }

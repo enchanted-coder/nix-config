@@ -43,50 +43,23 @@
       timeout = 2;
       efi = {
         canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
       };
-      grub = {
+      systemd-boot = {
         enable = true;
-        devices = [ "nodev" ];
-        efiSupport = true;
-        useOSProber = true;
-        extraEntries = ''
-        menuentry "Reboot" {
-          reboot
-        }
-        menuentry "Poweroff" {
-          halt
-        }
-'';
       };
     };
-    initrd.systemd.enable = true;
-   
   }; 
-/*
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.timeout = 2;
-  boot.initrd.enable = true;
-  boot.initrd.systemd.enable = true;
-  boot.consoleLogLevel = 3;
-  boot.plymouth = {
-    enable = true;
-    font = "${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf";
-    themePackages = [ pkgs.catppuccin-plymouth ];
-    theme = "catppuccin-macchiato";
-  }; */
 
   # Enable Display Manager
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --time-format '%I:%M %p | %a • %h | %F' --cmd Hyprland";
-        user = "greeter";
-      };
-    };
-  };
+  # services.greetd = {
+  #  enable = true;
+  #  settings = {
+  #    default_session = {
+  #      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --time-format '%I:%M %p | %a • %h | %F' --cmd Hyprland";
+  #      user = "greeter";
+  #    };
+  #  };
+  #};
 
   # Enable Networking
   networking = {
@@ -108,10 +81,10 @@
   # Services
   services = {
     # Desktop Environment
-    xserver = {
-      enable = true;
-      # displayManager.sddm.enable = true;
-    };
+    # xserver = {
+    #  enable = true;
+    #   displayManager.sddm.enable = true;
+    #};
     # desktopManager.plasma6.enable = true;
 
     # Sound with pipewire
@@ -125,19 +98,19 @@
     };
 
     # Printing
-    printing.enable = true;
+    # printing.enable = true;
 
     # File Management
-    gvfs.enable = true;
-    tumbler.enable = true;
+    # gvfs.enable = true;
+    # tumbler.enable = true;
 
     # SSD
-    fstrim.enable = true;
+    # fstrim.enable = true;
 
     # OpenSSH daemon
     # openssh.enable = true;
 
-    tlp.enable = true;
+    # tlp.enable = true;
     
   };
 
@@ -183,7 +156,6 @@
     description = "dd0n3";
     extraGroups = [ "networkmanager" "wheel" "disk" "power" "video" ];
     packages = with pkgs; [
-      teams-for-linux
     ];
     shell = pkgs.zsh;
   };
@@ -221,9 +193,6 @@
       ];
     };
 
-    # KDE Connect 
-    # kdeconnect.enable = true;
-
     # Programs that need SUID wrappers
     mtr.enable = true;
     gnupg.agent = {
@@ -239,11 +208,11 @@
    vim
    wget
    cmake
-   greetd.tuigreet
+   # greetd.tuigreet
   ];
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
+  #environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  #environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
 
   # xdg
   xdg.portal = {

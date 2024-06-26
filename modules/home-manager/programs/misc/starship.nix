@@ -11,7 +11,7 @@
       right_format = "$cmd_duration";
       
       directory = {
-        format = "[ ](bold #89b4fa)[ $path ]($style)";
+        format = "[ ](bold #8839ef)[ $path ]($style)";
         style = "bold #b4befe";
       };
 
@@ -35,7 +35,7 @@
         "Pictures" = " ";
       };
 
-      palette = "catppuccin_mocha";
-    } // builtins.fromTOML (builtins.readFile "${inputs.catppuccin-starship}/palettes/mocha.toml");
+      palette = "catppuccin_latte";
+    } // builtins.fromTOML (builtins.readFile "${inputs.catppuccin-starship}/palettes/latte.toml");
   };
 }
