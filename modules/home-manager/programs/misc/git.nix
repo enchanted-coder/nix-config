@@ -1,12 +1,12 @@
-{ pkgs, ... }: 
+{ pkgs, ... }:
 {
   programs.git = {
     enable = true;
-    
-    userName = "enchanted-coder";
-    userEmail = "danieltogey@pm.me";
-    
-    extraConfig = { 
+    settings = {
+      user = {
+        name = "Daniel Kosgei";
+        email = "dannykosgei@gmail.com";
+      };
       init.defaultBranch = "main";
       credential.helper = "store";
     };

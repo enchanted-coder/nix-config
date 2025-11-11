@@ -1,10 +1,7 @@
-{ pkgs, ... }:
-
-{
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     neovim
-    vscode
-    # jetbrains.idea-ultimate
-    
+    #android-studio
+    code-cursor-fhs
   ];
 }

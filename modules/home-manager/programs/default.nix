@@ -1,9 +1,8 @@
 {
   imports = [
-    ./alactritty
-    ./hyprland
     ./misc
-    ./waybar
-    ./wofi
+    ./mpv
+    ./zathura
+
   ];
 }

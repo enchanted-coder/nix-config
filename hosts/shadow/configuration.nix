@@ -1,89 +1,65 @@
-{ config, pkgs, inputs, ... }:
-
-{
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+{ config
+, pkgs
+, inputs
+, ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Enable Experimental Features and Package Management
   nix = {
+    extraOptions = ''
+      trusted-users = root danny
+    '';
     settings = {
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
     };
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than 10d";
     };
   };
 
-  # Systemd stuff 
-  systemd = {
-    user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "grpahical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
-  };
-
-  # Bootloader and Filesystems 
+  # Bootloader and Filesystems
   boot = {
+    extraModulePackages = with config.boot.kernelPackages; [
+      v4l2loopback
+    ];
+    extraModprobeConfig = ''
+      options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+    '';
+    # Kernel
     supportedFilesystems = [ "ntfs" "exfat" "mtpfs" ];
     loader = {
-      timeout = 2;
+      timeout = 3;
       efi = {
         canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
+        efiSysMountPoint = "/boot/efi";
       };
+      #  systemd-boot.enable = true;
       grub = {
+        dedsec-theme = {
+          enable = true;
+          style = "compact";
+          icon = "color";
+          resolution = "1080p";
+        };
         enable = true;
         devices = [ "nodev" ];
         efiSupport = true;
         useOSProber = true;
         extraEntries = ''
-        menuentry "Reboot" {
-          reboot
-        }
-        menuentry "Poweroff" {
-          halt
-        }
-'';
-      };
-    };
-    initrd.systemd.enable = true;
-   
-  }; 
-/*
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.timeout = 2;
-  boot.initrd.enable = true;
-  boot.initrd.systemd.enable = true;
-  boot.consoleLogLevel = 3;
-  boot.plymouth = {
-    enable = true;
-    font = "${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf";
-    themePackages = [ pkgs.catppuccin-plymouth ];
-    theme = "catppuccin-macchiato";
-  }; */
-
-  # Enable Display Manager
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --time-format '%I:%M %p | %a • %h | %F' --cmd Hyprland";
-        user = "greeter";
+          menuentry "Reboot" {
+            reboot
+          }
+          menuentry "Poweroff" {
+            halt
+          }
+        '';
       };
     };
   };
@@ -92,7 +68,23 @@
   networking = {
     hostName = "shadow";
     networkmanager.enable = true;
-    # firewall.allowedTCPPorts = [ 80 443 ];
+    firewall = rec {
+      enable = false;
+      allowedTCPPorts = [ 3074 5223 8080 ];
+      allowedTCPPortRanges = [
+        {
+          from = 1714;
+          to = 1764;
+        } # KDE Connect
+      ];
+      allowedUDPPorts = [ 88 3074 3658 ];
+      allowedUDPPortRanges = [
+        {
+          from = 1714;
+          to = 1764;
+        } # KDE Connect
+      ];
+    };
   };
 
   # Set your time zone.
@@ -107,12 +99,12 @@
 
   # Services
   services = {
-    # Desktop Environment
     xserver = {
       enable = true;
-      # displayManager.sddm.enable = true;
+      videoDrivers = [ "modesetting" "fbdev" ];
     };
-    # desktopManager.plasma6.enable = true;
+    displayManager.ly.enable = true;
+    desktopManager.plasma6.enable = true;
 
     # Sound with pipewire
     pipewire = {
@@ -124,41 +116,52 @@
       };
     };
 
-    # Printing
-    printing.enable = true;
+    # bluetooth
+    #   blueman.enable = true;
 
-    # File Management
-    gvfs.enable = true;
-    tumbler.enable = true;
+    # Printing
+    # printing.enable = true;
 
     # SSD
     fstrim.enable = true;
 
     # OpenSSH daemon
     # openssh.enable = true;
-
-    tlp.enable = true;
-    
   };
 
-  # Enable Window Manager
-  programs = {
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-    };
-  };
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    plasma-browser-integration
+    konsole
+    oxygen
+    kdepim-runtime
+  ];
 
   # Security
   security = {
     rtkit.enable = true;
-    polkit.enable = true;
+    polkit = {
+      enable = true;
+    };
   };
-  
-  # OpenGL
-  hardware.opengl = {
-    enable = true;
-    driSupport32Bit = true;
+
+  hardware = {
+    # OpenGL
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+
+    # Bluetooth
+    bluetooth = {
+      enable = false;
+      powerOnBoot = false;
+      settings = {
+        General = {
+          Enable = "Source,Sink,Media,Socket";
+          Experimental = false;
+        };
+      };
+    };
   };
 
   # Fonts
@@ -170,7 +173,8 @@
       };
     };
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "Meslo" "JetBrainsMono" "Agave" ]; })
+      nerd-fonts.agave
+      nerd-fonts.jetbrains-mono
       font-awesome
       powerline-fonts
       powerline-symbols
@@ -178,20 +182,34 @@
   };
 
   # User account
-  users.users.dd0n3 = {
+  users.users.danny = {
     isNormalUser = true;
-    description = "dd0n3";
-    extraGroups = [ "networkmanager" "wheel" "disk" "power" "video" ];
+    description = "danny";
+    extraGroups = [ "adb" "docker" "libvirtd" "kvm" "networkmanager" "wheel" "disk" "power" "video" ];
     packages = with pkgs; [
-      teams-for-linux
+      devenv
+      tree
     ];
-    shell = pkgs.zsh;
   };
+
+  users.groups.libvirtd.members = [ "danny" ];
+
+  virtualisation = {
+    docker.rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+    libvirtd.enable = true;
+    kvmgt.enable = true;
+    spiceUSBRedirection.enable = true;
+  };
+
+  programs.virt-manager.enable = true;
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
-      "dd0n3" = import ./home.nix;
+      "danny" = import ./home.nix;
     };
   };
 
@@ -202,27 +220,13 @@
       allowInsecure = true;
       allowUnsupportedSystem = true;
       PermittedInsecurePackages = [
-
       ];
     };
   };
 
   # Configure programs
   programs = {
-    # Shell
-    zsh.enable = true;
-
-    # Thunar 
-    thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-volman
-      ];
-    };
-
-    # KDE Connect 
-    # kdeconnect.enable = true;
+    adb.enable = true;
 
     # Programs that need SUID wrappers
     mtr.enable = true;
@@ -230,30 +234,32 @@
       enable = true;
       enableSSHSupport = true;
     };
+
   };
-  
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 
-  environment.systemPackages = with pkgs; [
-   vim
-   wget
-   cmake
-   greetd.tuigreet
-  ];
+  environment = {
+    sessionVariables = {
+      #NIXOS_OZONE_WL = "1";
+    };
+    systemPackages = with pkgs; [
+      vim
+      wget
+      cmake
+    ];
+  };
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
-
-  # xdg
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
     extraPortals = with pkgs; [
-      xdg-desktop-portal-hyprland
     ];
-    # wlr.enable = true;
   };
+
+  #environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  #environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -267,6 +273,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
-
+  system.stateVersion = "24.11"; # Did you read the comment?
 }

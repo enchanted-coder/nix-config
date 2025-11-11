@@ -1,19 +1,25 @@
-{ pkgs, inputs, ... }:
-let spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
-in {
-  imports = [ inputs.spicetify-nix.homeManagerModule ];
-  programs.spicetify = {
-    enable = true;
-    theme = spicePkgs.themes.Onepunch;
-    enabledCustomApps = with spicePkgs.apps; [ lyrics-plus ];
-    enabledExtensions = with spicePkgs.extensions; [
-      hidePodcasts
-      bookmark
-      fullAppDisplay
-      adblock
-      keyboardShortcut
-      volumePercentage
-      autoSkip
-    ];
-  };
+{ config, pkgs, inputs, ...}:
+{
+  imports = [
+    inputs.spicetify-nix.homeManagerModules.default
+  ];
+
+  programs.spicetify = 
+    let
+      spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+    in 
+    {
+      enable = true;
+      enabledCustomApps = with spicePkgs.apps; [
+        marketplace
+        lyricsPlus
+      ];
+      enabledExtensions = with spicePkgs.extensions; [
+        adblock
+        #hidePodcasts
+        shuffle
+      ];
+      theme = spicePkgs.themes.onepunch;
+
+    };
 }
